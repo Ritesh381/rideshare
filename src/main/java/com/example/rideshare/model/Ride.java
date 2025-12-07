@@ -15,6 +15,8 @@ public class Ride {
     private String dropLocation;
     private RideStatus status;
     private Date createdAt;
+    private Date completedAt;
+    private long durationMillis;
 
     public Ride() {
         this.createdAt = new Date();
@@ -75,4 +77,21 @@ public class Ride {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
+    public Date getCompletedAt() {
+        return completedAt;
+    }
+
+    public void setCompletedAt(Date completedAt) {
+        this.completedAt = completedAt;
+    }
+
+    public long getDurationMillis() {
+        return durationMillis;
+    }
+
+    public void setDuration() {
+        this.durationMillis = this.completedAt.getTime() - this.createdAt.getTime();
+    }
 }
+

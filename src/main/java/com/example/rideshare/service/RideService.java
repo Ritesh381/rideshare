@@ -9,6 +9,7 @@ import com.example.rideshare.repository.RideRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -48,6 +49,8 @@ public class RideService {
                 .orElseThrow(() -> new NotFoundException("Ride not found"));
         if(ride.getStatus() == RideStatus.ACCEPTED){
             ride.setStatus(RideStatus.COMPLETED);
+            ride.setCompletedAt(new Date());
+            ride.setDuration();
             rideRepository.save(ride);
         }else{
             throw new BadRequestException("Ride is either already completed or in REQUESTED state");

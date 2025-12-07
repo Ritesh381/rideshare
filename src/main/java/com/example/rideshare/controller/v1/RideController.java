@@ -27,7 +27,7 @@ public class RideController {
     }
 
     // Complete ride
-    @PostMapping("/{id}/complete")
+    @GetMapping("/{id}/complete")
     public Ride completeRide(@PathVariable String id){
         return rideService.completeRide(id);
     }
