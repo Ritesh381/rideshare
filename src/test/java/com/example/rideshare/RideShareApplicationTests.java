@@ -1,4 +1,4 @@
-package com.example.RideShare;
+package com.example.rideshare;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

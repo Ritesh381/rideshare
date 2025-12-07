@@ -1,4 +1,4 @@
-package com.example.RideShare;
+package com.example.rideshare;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

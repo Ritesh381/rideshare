@@ -1,1 +1,18 @@
-spring.application.name=RideShare
+server:
+  port: 8080
+
+spring:
+  application:
+    name: rideshare
+
+  mongodb:
+    uri: mongodb://localhost:27017/rideshare_db
+
+jwt:
+  secret: mysupersecretkey123456789mytokenkey
+  expiration: 86400000  # 24 hours
+
+app:
+  name: RideShare Backend
+  version: 1.0.0
+  description: Ride sharing API
