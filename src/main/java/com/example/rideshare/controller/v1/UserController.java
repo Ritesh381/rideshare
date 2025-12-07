@@ -1,6 +1,8 @@
 package com.example.rideshare.controller.v1;
 
+import com.example.rideshare.exception.BadRequestException;
 import com.example.rideshare.model.Ride;
+import com.example.rideshare.model.Role;
 import com.example.rideshare.model.User;
 import com.example.rideshare.service.RideService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,10 @@ public class UserController {
         User user = (User) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();
+
+        if(user.getRole() != Role.ROLE_USER){
+            throw new BadRequestException("User only endpoint");
+        }
 
         String userId = user.getId();
 

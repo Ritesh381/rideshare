@@ -5,8 +5,10 @@ import com.example.rideshare.exception.BadRequestException;
 import com.example.rideshare.exception.NotFoundException;
 import com.example.rideshare.model.Ride;
 import com.example.rideshare.model.RideStatus;
+import com.example.rideshare.model.User;
 import com.example.rideshare.repository.RideRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -47,6 +49,17 @@ public class RideService {
     public Ride completeRide(String rideId) {
         Ride ride = rideRepository.findById(rideId)
                 .orElseThrow(() -> new NotFoundException("Ride not found"));
+        User user = (User) SecurityContextHolder.getContext()
+            .getAuthentication()
+            .getPrincipal();
+
+        if(
+            !ride.getUserId().equals(user.getId()) ||
+            !ride.getDriverId().equals(user.getId())
+        ){
+            throw new  BadRequestException("You are not allowed to complete this ride");
+        }
+
         if(ride.getStatus() == RideStatus.ACCEPTED){
             ride.setStatus(RideStatus.COMPLETED);
             ride.setCompletedAt(new Date());
@@ -59,6 +72,7 @@ public class RideService {
     }
 
     public List<Ride> getUserRides(String userId) {
+
         return rideRepository.findByUserId(userId);
     }
 }

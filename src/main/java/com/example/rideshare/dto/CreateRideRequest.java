@@ -4,9 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 public class CreateRideRequest {
-    @NotBlank
+    @NotBlank(message = "Pickup is required")
     private String pickupLocation;
-    @NotBlank
+    @NotBlank(message = "Drop is required")
     private String dropLocation;
 
     public String getPickupLocation() {
