@@ -8,6 +8,8 @@ public class CreateRideRequest {
     private String pickupLocation;
     @NotBlank(message = "Drop is required")
     private String dropLocation;
+    @NotBlank
+    private double fare;
 
     public String getPickupLocation() {
         return pickupLocation;
@@ -23,5 +25,11 @@ public class CreateRideRequest {
 
     public void setDropLocation(String dropLocation) {
         this.dropLocation = dropLocation;
+    }
+    public double getFare() {
+        return fare;
+    }
+    public void setFare(double fare) {
+        this.fare = fare;
     }
 }

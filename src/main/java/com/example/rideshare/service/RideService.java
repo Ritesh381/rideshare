@@ -10,6 +10,7 @@ import com.example.rideshare.repository.RideRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
@@ -25,6 +26,7 @@ public class RideService {
         ride.setUserId(userId);
         ride.setPickupLocation(request.getPickupLocation());
         ride.setDropLocation(request.getDropLocation());
+        ride.setFare(request.getFare());
         rideRepository.save(ride);
         return ride;
     }
@@ -33,6 +35,7 @@ public class RideService {
         return rideRepository.findByStatus(RideStatus.REQUESTED);
     }
 
+    @Transactional
     public Ride acceptRide(String rideId, String driverId) {
         Ride ride = rideRepository.findById(rideId)
                 .orElseThrow(() -> new NotFoundException("Ride not found"));
@@ -54,7 +57,7 @@ public class RideService {
             .getPrincipal();
 
         if(
-            !ride.getUserId().equals(user.getId()) ||
+            !ride.getUserId().equals(user.getId()) &&
             !ride.getDriverId().equals(user.getId())
         ){
             throw new  BadRequestException("You are not allowed to complete this ride");

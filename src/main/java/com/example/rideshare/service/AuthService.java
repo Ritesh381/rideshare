@@ -43,7 +43,7 @@ public class AuthService {
             throw new BadRequestException("Wrong password");
         }
 
-        return jwtUtil.generateToken(user.get().getUsername(), user.get().getRole());
+        return jwtUtil.generateToken(user.get().getUsername(), user.get().getRole()) + "\n" + user.get().getId();
     }
 
     public User loadUserByUsername(String username){
