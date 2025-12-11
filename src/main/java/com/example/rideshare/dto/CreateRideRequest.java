@@ -10,6 +10,8 @@ public class CreateRideRequest {
     private String dropLocation;
     @NotBlank
     private double fare;
+    @NotBlank
+    private double distanceKm;
 
     public String getPickupLocation() {
         return pickupLocation;
@@ -31,5 +33,11 @@ public class CreateRideRequest {
     }
     public void setFare(double fare) {
         this.fare = fare;
+    }
+    public double getDistanceKm() {
+        return distanceKm;
+    }
+    public void setDistanceKm(double distanceKm) {
+        this.distanceKm = distanceKm;
     }
 }

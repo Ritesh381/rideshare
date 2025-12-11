@@ -27,6 +27,7 @@ public class RideService {
         ride.setPickupLocation(request.getPickupLocation());
         ride.setDropLocation(request.getDropLocation());
         ride.setFare(request.getFare());
+        ride.setDistanceKm(request.getDistanceKm());
         rideRepository.save(ride);
         return ride;
     }
@@ -70,6 +71,29 @@ public class RideService {
             rideRepository.save(ride);
         }else{
             throw new BadRequestException("Ride is either already completed or in REQUESTED state");
+        }
+        return ride;
+    }
+
+    public Ride cancelRide(String rideId) {
+        Ride ride = rideRepository.findById(rideId)
+                .orElseThrow(() -> new NotFoundException("Ride not found"));
+        User user = (User) SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getPrincipal();
+
+        if(
+                !ride.getUserId().equals(user.getId()) &&
+                        !ride.getDriverId().equals(user.getId())
+        ){
+            throw new  BadRequestException("You are not allowed to complete this ride");
+        }
+
+        if(ride.getStatus() != RideStatus.COMPLETED || ride.getStatus() != RideStatus.CANCELLED){
+            ride.setStatus(RideStatus.CANCELLED);
+            rideRepository.save(ride);
+        }else{
+            throw new BadRequestException("Ride is either already completed or in cancelled state");
         }
         return ride;
     }

@@ -31,4 +31,10 @@ public class RideController {
     public Ride completeRide(@PathVariable String id){
         return rideService.completeRide(id);
     }
+
+    // Cancel ride
+    @GetMapping("/{id}/cancel")
+    public Ride cancelRide(@PathVariable String id){
+        return rideService.cancelRide(id);
+    }
 }

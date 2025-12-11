@@ -18,15 +18,14 @@ public class Ride {
     private Date completedAt;
     private long durationMillis;
     private double fare;
+    private double distanceKm;
 
     public Ride() {
         this.createdAt = new Date();
         this.status = RideStatus.REQUESTED;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
 
     public String getUserId() {
         return userId;
@@ -75,6 +74,7 @@ public class Ride {
     public void setStatus(RideStatus status) {
         this.status = status;
     }
+
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
@@ -95,12 +95,12 @@ public class Ride {
         this.durationMillis = this.completedAt.getTime() - this.createdAt.getTime();
     }
 
-    public double getFare() {
-        return fare;
-    }
+    public double getFare() { return fare; }
 
-    public void setFare(double fare) {
-        this.fare = fare;
-    }
+    public void setFare(double fare) { this.fare = fare; }
+
+    public double getDistanceKm() { return distanceKm; }
+
+    public void setDistanceKm(double distanceKm) { this.distanceKm = distanceKm; }
 }
 
