@@ -2,18 +2,21 @@ package com.example.rideshare.service;
 
 import com.example.rideshare.model.Ride;
 import com.example.rideshare.model.RideStatus;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+@Service
 public class RideQueryServiceV2 {
     private final MongoTemplate mongoTemplate;
 
