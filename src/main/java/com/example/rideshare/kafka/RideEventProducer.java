@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RideEventProducer {
+
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     public RideEventProducer(KafkaTemplate<String, String> kafkaTemplate) {
@@ -12,7 +13,6 @@ public class RideEventProducer {
     }
 
     public void publishRideCompleted(String rideId, String userId) {
-        String message = rideId + " " + userId;
-        kafkaTemplate.send("ride-event", message);
+        kafkaTemplate.send("ride-events", rideId + " " + userId);
     }
 }

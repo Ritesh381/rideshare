@@ -9,8 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/file")
 public class FileUplaodController {
-    @PostMapping("/upload")
-    public String upload(@RequestParam("file") MultipartFile file) {
-
-    }
+//    @PostMapping("/upload")
+//    public String upload(@RequestParam("file") MultipartFile file) {
+//
+//    }
 }

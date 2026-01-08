@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RideEventConsumer {
-    @KafkaListener(topics = "ride-events", groupId = "rideshare-grou[")
-    public void consumer(String message) {}
+
+    @KafkaListener(topics = "ride-events", groupId = "rideshare-group")
+    public void consume(String message) {
+        System.out.println("Received: " + message);
+    }
 }

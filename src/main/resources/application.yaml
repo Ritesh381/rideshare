@@ -2,8 +2,22 @@ server:
   port: 8080
 
 spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: accuwu381@gmail.com
+    password: ygrkwixxheoeygjq
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
   kafka:
-    bootstrap-server: localhost:9892
+    bootstrap-servers: localhost:9092
 
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
@@ -23,21 +37,20 @@ spring:
 
 jwt:
   secret: mysupersecretkey123456789mytokenkey
-  expiration: 86400000  # 24 hours
+  expiration: 86400000 # 24 hours
 
 app:
   name: RideShare Backend
   version: 1.0.0
   description: Ride sharing API
-cache:
-  type: redis
 
-redis:
-  host: localhost
-  port: 6379
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
-servlet:
-  multipart:
-    enabled: true
-    max-file-size: 10MB
-    max-request-size: 10MB
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
